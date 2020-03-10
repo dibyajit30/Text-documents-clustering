@@ -51,7 +51,20 @@ public class PreProcessing {
         	  tokens.add(processed);     
 	   
 	}
-	     return tokens;
+	     for(String token:tokens)
+		   {
+			   String c1 = token.substring(1,token.length()-1);
+			   if(c1.length()==0)
+			   {
+				   continue;
+			   }
+			   String[] arr = c1.split(" ");
+			   for(String s:arr)
+			   {
+				   ans.add(s);
+			   } 
+		   }
+	     return ans;
 	}
 	
 	// This function removes all the stop words and the punctuation, special characters, except the numbers and alphabets.
@@ -90,12 +103,12 @@ public class PreProcessing {
       return lemma.toString();
 	}
 	
-public ArrayList<String> process(File file)
-{
+
+public HashSet<String> getStopWords(){
 	HashSet<String> stopWords = new HashSet<>(); 
-	//String directory = "C:\\\\Users\\\\Admin\\\\Desktop\\\\NYU Courant(2nd sem)\\\\BDS\\\\HW2\\\\stanford-corenlp-full-2018-10-05\\\\patterns\\\\stopwords.txt";
-	String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\Text-documents-clustering\\Clustering\\resources\\stopwords.txt";
-	File sWords = new File(directory);
+	//String directory = "C:\\\\Users\\\\Admin\\\\Desktop\\\\NYU Courant(2nd sem)\\\\BDS\\\\HW2\\";
+	String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
+	File sWords = new File(directory + "Text-documents-clustering\\Clustering\\resources\\stopwords.txt");
 	Scanner sc = null;
 	try
 	{
@@ -111,8 +124,6 @@ public ArrayList<String> process(File file)
 		String line = sc.nextLine();
 		stopWords.add(line);
 	}
-	
-	ArrayList<String> tokens = readFromFile(stopWords, file);
-	return tokens;
+	return stopWords;
 }
 }

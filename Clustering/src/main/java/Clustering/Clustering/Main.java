@@ -19,37 +19,24 @@ public class Main{
 	// This puts all the stop words into hashset.	
 	 HashSet<String> uniqueWords = new HashSet<>();
      HashMap<String, Integer> freq;
-     //String directory = "C:\\Users\\Admin\\Desktop\\NYU Courant(2nd sem)\\BDS\\HW2\\dataset_3\\data\\C";
-     String directory = "C:\\\\Users\\\\Dibyajit\\\\Documents\\\\Courses\\\\BDS\\\\HW\\\\dataset_3\\\\data\\\\C1";
-     File folder = new File(directory);
+     //String directory = "C:\\Users\\Admin\\Desktop\\NYU Courant(2nd sem)\\BDS\\HW2\\";
+     String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
+     File folder = new File(directory + "Text-documents-clustering\\\\Clustering\\\\resources\\\\dataset_3\\\\data\\\\C1");
      
      PreProcessing pp = new PreProcessing();
      documentMatrix dm = new documentMatrix();
      ArrayList<String> list = new ArrayList<>();
+     
+     HashSet<String> stopwords = pp.getStopWords();
     
      ArrayList<HashMap<String, Integer>> listmap = new ArrayList<>();
 	 for(File file: folder.listFiles())
 	 { 
 	   freq = new HashMap<>();
 	   ArrayList<String> ans = new ArrayList<>();
-	   list = pp.process(file);
+	   list = pp.readFromFile(stopwords, file);
 	   
-	   for(String c:list)
-		   {
-			   String c1 = c.substring(1,c.length()-1);
-			   if(c1.length()==0)
-			   {
-				   continue;
-			   }
-			   String[] arr = c1.split(" ");
-			   for(String s:arr)
-			   {
-				   ans.add(s);
-			   } 
-		   }
-	  
-	   
-	   HashMap<String, Integer> map = dm.getFreq(ans, uniqueWords, freq);
+	   HashMap<String, Integer> map = dm.getFreq(list, uniqueWords, freq);
 	   listmap.add(map);
      }
 	 
