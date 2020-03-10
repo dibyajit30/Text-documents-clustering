@@ -45,15 +45,27 @@ public class PreProcessing {
           next2 = next1.substring(1,next1.length()-1);
           }
 	      
-	      // Lemmatize and tokenize
-          List<String> processed = lemmatization(next2);
-          	for(String token:processed) {
-          		tokens.add(token);
-          	}
-        	       
+	      
+          String processed = tokenization(next2);
+          
+        	  tokens.add(processed);     
 	   
-	      }
-	     return tokens;
+	}
+	     for(String token:tokens)
+		   {
+			   String c1 = token.substring(1,token.length()-1);
+			   if(c1.length()==0)
+			   {
+				   continue;
+			   }
+			   String[] arr = c1.split(" ");
+			   for(String s:arr)
+			   {
+				   //s = s.replaceAll("[^a-zA-Z0-9]", "");
+				   ans.add(s);
+			   } 
+		   }
+	     return ans;
 	}
 	
 	// This function removes all the stop words and the punctuation, special characters, except the numbers and alphabets.
@@ -75,7 +87,7 @@ public class PreProcessing {
 	}
 	
 	// This function gives the lemma of all the words.
-	public List<String> lemmatization(String line)
+	public String tokenization(String line)
 	{
       List<String> lemma = new ArrayList<>();
       //List<String> ner = new ArrayList<>();
@@ -89,7 +101,7 @@ public class PreProcessing {
     	  }
       }
       
-      return lemma;
+      return lemma.toString();
 	}
 	
 

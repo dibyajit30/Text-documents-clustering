@@ -21,7 +21,7 @@ public class Main{
      HashMap<String, Integer> freq;
      //String directory = "C:\\Users\\Admin\\Desktop\\NYU Courant(2nd sem)\\BDS\\HW2\\";
      String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
-     File folder = new File(directory + "Text-documents-clustering\\\\Clustering\\\\resources\\\\dataset_3\\\\data\\\\C1");
+     File folder = new File(directory + "Text-documents-clustering\\\\Clustering\\\\resources\\\\dataset_3\\\\data\\\\C");
      
      PreProcessing pp = new PreProcessing();
      documentMatrix dm = new documentMatrix();
