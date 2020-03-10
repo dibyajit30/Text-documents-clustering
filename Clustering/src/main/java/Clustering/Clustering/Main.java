@@ -53,10 +53,10 @@ public class Main{
 	  
 	  // Generating keyWords for clusters
 	  ArrayList<String> keyWords = dm.generateKeyWords(transformedMatrix);
-	  for(String s:keyWords)
-	  {
-		  System.out.println(s);
-	  }
+//	  for(String s:keyWords)
+//	  {
+//		  System.out.println(s);
+//	  }
 	  
 	  PrincipleComponentAnalysis pca = new PrincipleComponentAnalysis();
 	  //double[][] principleComponents = pca.getPrincipleComponents(sortedtransMatrix, 2);
@@ -75,7 +75,26 @@ public class Main{
 	  
 	  Performance per = new Performance();
 	  per.buildCM(clusters);
+	  ArrayList<Double> precisions = per.getPrecisions(per.C1_truePositives, per.C1_falsePositives, per.C4_truePositives, per.C4_falsePositives, per.C7_truePositives, per.C7_falsePositives);
+	  for(double d:precisions)
+	  {
+		  System.out.print(d + " "); 
+	  }
 	  
+	  System.out.println();
+	  ArrayList<Double> recalls = per.getRecalls(per.C1_truePositives, per.C4_truePositives, per.C7_truePositives);
+	  for(double d:recalls)
+	  {
+		  System.out.print(d + " "); 
+	  }
+	  System.out.println();
+	  
+	  ArrayList<Double> F1Scores = per.getF1Scores(precisions, recalls);
+	  for(double d:F1Scores)
+	  {
+		  System.out.print(d + " "); 
+	  }
+			  
 	  Visualization vc = new Visualization(transformedMatrix);
 	  vc.setVisible(true);
 	  
