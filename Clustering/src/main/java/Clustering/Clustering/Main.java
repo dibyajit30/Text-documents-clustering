@@ -42,33 +42,21 @@ public class Main{
 	 
 	  int[][] documentMatrix = dm.makeMatrix(listmap, uniqueWords);
 	  
-	  double[][] documentMatrix1 = new double[documentMatrix.length][documentMatrix[0].length];
-	  
-	  for(int i=0;i<documentMatrix.length;i++) {
-		  for(int j=0;j<documentMatrix[0].length;j++)
-		  {
-			  documentMatrix1[i][j] = (double)documentMatrix[i][j];
-		  }
-	  }
-	  
 	  
 	  
 	  double[][] transformedMatrix = dm.makeTM(documentMatrix); 
 	  //double[][] sortedtransMatrix = dm.sortedTheMatrix(transformedMatrix, documentMatrix);
-	  //double[][] sortedtransMatrix = dm.sortedTheMatrix(transformedMatrix);
 	  
 	  //double[][] pca_sortedtransMatrix = pca.transform(sortedtransMatrix, PCA.TransformationType.WHITENING);
 	  
 	  //Applying pca on sortedtransMatrix
 	  
-//	  for(int i=0;i<documentMatrix.length;i++)
-//	  {
-//		  for(int j=0;j<documentMatrix[0].length;j++)
-//		  {
-//			  System.out.print(sortedtransMatrix[i][j] + " ");
-//		  }
-//		  System.out.println();
-//	  }
+	  // Generating keyWords for clusters
+	  ArrayList<String> keyWords = dm.generateKeyWords(transformedMatrix);
+	  for(String s:keyWords)
+	  {
+		  System.out.println(s);
+	  }
 	  
 	  PrincipleComponentAnalysis pca = new PrincipleComponentAnalysis();
 	  //double[][] principleComponents = pca.getPrincipleComponents(sortedtransMatrix, 2);
@@ -76,9 +64,9 @@ public class Main{
 	  
 	  Clustering c = new Clustering();
 	  
-	  double[][] euclideanMatrix = c.getEuclideanMatrix(documentMatrix1);  
-	  double[][] cosineMatrix = c.getCosineMatrix(documentMatrix1);
-	  ArrayList<List<Integer>> clusters = c.makeClusters(documentMatrix1, 3, 1);
+	  double[][] euclideanMatrix = c.getEuclideanMatrix(transformedMatrix);  
+	  double[][] cosineMatrix = c.getCosineMatrix(transformedMatrix);
+	  ArrayList<List<Integer>> clusters = c.makeClusters(transformedMatrix, 3, 1);
 	  
 	  for(int i=0;i<clusters.size();i++)
 	  {
