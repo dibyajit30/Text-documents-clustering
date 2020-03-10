@@ -61,6 +61,7 @@ public class PreProcessing {
 			   String[] arr = c1.split(" ");
 			   for(String s:arr)
 			   {
+				   s = s.replaceAll("[^a-zA-Z0-9]", "");
 				   ans.add(s);
 			   } 
 		   }
