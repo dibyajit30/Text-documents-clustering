@@ -58,6 +58,8 @@ public class Main{
 //		  System.out.println();
 //	  }
 	  
+	  PrincipleComponentAnalysis pca = new PrincipleComponentAnalysis();
+	  double[][] principleComponents = pca.getPrincipleComponents(sortedtransMatrix, 2);
 	  Clustering c = new Clustering();
 	  
 	  double[][] euclideanMatrix = c.getEuclideanMatrix(sortedtransMatrix);  
