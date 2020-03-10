@@ -48,5 +48,10 @@
     <artifactId>nd4j-jblas</artifactId>
     <version>0.4-rc0</version>
 	</dependency>
+	<dependency>
+    <groupId>de.erichseifert.gral</groupId>
+    <artifactId>gral-core</artifactId>
+    <version>0.11</version>
+    </dependency>
   </dependencies>
 </project>

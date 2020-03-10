@@ -19,8 +19,8 @@ public class Main{
 	// This puts all the stop words into hashset.	
 	 HashSet<String> uniqueWords = new HashSet<>();
      HashMap<String, Integer> freq;
-     //String directory = "C:\\Users\\Admin\\Desktop\\NYU Courant(2nd sem)\\BDS\\HW2\\";
-     String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
+     String directory = "C:\\Users\\Admin\\Desktop\\NYU Courant(2nd sem)\\BDS\\";
+     //String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
      File folder = new File(directory + "Text-documents-clustering\\\\Clustering\\\\resources\\\\dataset_3\\\\data\\\\C");
      
      PreProcessing pp = new PreProcessing();
@@ -42,8 +42,20 @@ public class Main{
 	 
 	  int[][] documentMatrix = dm.makeMatrix(listmap, uniqueWords);
 	  
+	  double[][] documentMatrix1 = new double[documentMatrix.length][documentMatrix[0].length];
+	  
+	  for(int i=0;i<documentMatrix.length;i++) {
+		  for(int j=0;j<documentMatrix[0].length;j++)
+		  {
+			  documentMatrix1[i][j] = (double)documentMatrix[i][j];
+		  }
+	  }
+	  
+	  
+	  
 	  double[][] transformedMatrix = dm.makeTM(documentMatrix); 
-	  double[][] sortedtransMatrix = dm.sortedTheMatrix(transformedMatrix, documentMatrix);
+	  //double[][] sortedtransMatrix = dm.sortedTheMatrix(transformedMatrix, documentMatrix);
+	  //double[][] sortedtransMatrix = dm.sortedTheMatrix(transformedMatrix);
 	  
 	  //double[][] pca_sortedtransMatrix = pca.transform(sortedtransMatrix, PCA.TransformationType.WHITENING);
 	  
@@ -59,12 +71,14 @@ public class Main{
 //	  }
 	  
 	  PrincipleComponentAnalysis pca = new PrincipleComponentAnalysis();
-	  double[][] principleComponents = pca.getPrincipleComponents(sortedtransMatrix, 2);
+	  //double[][] principleComponents = pca.getPrincipleComponents(sortedtransMatrix, 2);
+	  
+	  
 	  Clustering c = new Clustering();
 	  
-	  double[][] euclideanMatrix = c.getEuclideanMatrix(sortedtransMatrix);  
-	  double[][] cosineMatrix = c.getCosineMatrix(sortedtransMatrix);
-	  ArrayList<List<Integer>> clusters = c.makeClusters(sortedtransMatrix, 3, 1);
+	  double[][] euclideanMatrix = c.getEuclideanMatrix(documentMatrix1);  
+	  double[][] cosineMatrix = c.getCosineMatrix(documentMatrix1);
+	  ArrayList<List<Integer>> clusters = c.makeClusters(documentMatrix1, 3, 1);
 	  
 	  for(int i=0;i<clusters.size();i++)
 	  {
@@ -73,5 +87,12 @@ public class Main{
 	  
 	  Performance per = new Performance();
 	  per.buildCM(clusters);
+	  
+	  Visualization vc = new Visualization(transformedMatrix);
+	  vc.setVisible(true);
+	  
+	  
+	  
+	  
 	}
 }

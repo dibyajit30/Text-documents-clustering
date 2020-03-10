@@ -57,39 +57,49 @@ public class documentMatrix {
 		return documentMatrix;
 	}
 	
-	public double[][] sortedTheMatrix(double[][] transformedMatrix, int[][] documentMatrix)
-	{
-//		ArrayList<double[]> tM = (ArrayList<double[]>) Arrays.asList(transformedMatrix);
-//		ArrayList<int[]> dM = (ArrayList<int[]>) Arrays.asList(documentMatrix);
-//		for(int i=0;i<tM.size();i++)
-//		{
-//			double[] tMarray= tM.get(i);
-//			int[] dMarray = dM.get(i);
-		 double[][] documentMatrix1 = new double[documentMatrix.length][documentMatrix[0].length];
-		 
-		 // converting document matrix into double which is documentmatrix 1 
-		 for(int i=0;i<documentMatrix.length;i++)
-		 {
-			 for(int j=0;j<documentMatrix[0].length;j++)
-			 {
-				 documentMatrix1[i][j] = (double)documentMatrix[i][j];
-			 }
-		 }
-		 
-		 ///sort documentmatrix1 on the basis of transformed matrix 
-			Arrays.sort(documentMatrix1, new Comparator<double[]>(){
-				@Override
-		        public int compare(double[] left, double[] right) {
-		          return (int) (left[0] - right[0]);
-//		          if (entry1[col] > entry2[col]) 
-//		                return 1; 
-//		            else
-//		                return -1;
-		        }
+//	public double[][] sortedTheMatrix(double[][] transformedMatrix, int[][] documentMatrix)
+//	{
+////		ArrayList<double[]> tM = (ArrayList<double[]>) Arrays.asList(transformedMatrix);
+////		ArrayList<int[]> dM = (ArrayList<int[]>) Arrays.asList(documentMatrix);
+////		for(int i=0;i<tM.size();i++)
+////		{
+////			double[] tMarray= tM.get(i);
+////			int[] dMarray = dM.get(i);
+//		 double[][] documentMatrix1 = new double[documentMatrix.length][documentMatrix[0].length];
+//		 
+//		 // converting document matrix into double which is documentmatrix 1 
+//		 for(int i=0;i<documentMatrix.length;i++)
+//		 {
+//			 for(int j=0;j<documentMatrix[0].length;j++)
+//			 {
+//				 documentMatrix1[i][j] = (double)documentMatrix[i][j];
+//			 }
+//		 }
+//		 
+//		 ///sort documentmatrix1 on the basis of transformed matrix 
+//			Arrays.sort(documentMatrix1, new Comparator<double[]>(){
+//				@Override
+//		        public int compare(double[] left, double[] right) {
+//		          return (int) (left[0] - right[0]);
+////		          if (entry1[col] > entry2[col]) 
+////		                return 1; 
+////		            else
+////		                return -1;
+//		        }
+//	
+//		});
+//			return documentMatrix1;
+//	}
 	
-		});
-			return documentMatrix1;
-	}
+	
+//	public double[][] sortedTheMatrix(double[][] transformedMatrix)
+//	{
+//		Arrays.sort(transformedMatrix);
+//			return transformedMatrix;
+//	}
+	
+	
+	
 	
 	
 	public double[][] makeTM(int[][] documentMatrix)
