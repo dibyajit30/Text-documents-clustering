@@ -62,7 +62,7 @@ public class Main{
 	  
 	  double[][] euclideanMatrix = c.getEuclideanMatrix(sortedtransMatrix);  
 	  double[][] cosineMatrix = c.getCosineMatrix(sortedtransMatrix);
-	  ArrayList<List<Integer>> clusters = c.makeClusters(sortedtransMatrix, 3, 0);
+	  ArrayList<List<Integer>> clusters = c.makeClusters(sortedtransMatrix, 3, 1);
 	  
 	  for(int i=0;i<clusters.size();i++)
 	  {
