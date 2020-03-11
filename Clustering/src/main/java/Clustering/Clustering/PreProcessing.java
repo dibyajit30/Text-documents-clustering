@@ -107,9 +107,7 @@ public class PreProcessing {
 
 public HashSet<String> getStopWords(){
 	HashSet<String> stopWords = new HashSet<>(); 
-	String directory = "C:\\\\Users\\\\Admin\\\\Desktop\\\\NYU Courant(2nd sem)\\\\BDS\\\\";
-	//String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
-	File sWords = new File(directory + "Text-documents-clustering\\Clustering\\resources\\stopwords.txt");
+	File sWords = new File("..\\Clustering\\resources\\stopwords.txt");
 	Scanner sc = null;
 	try
 	{

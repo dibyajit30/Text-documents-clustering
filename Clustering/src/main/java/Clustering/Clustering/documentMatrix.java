@@ -134,7 +134,6 @@ public class documentMatrix {
 			{
 			   sum = sum + documentMatrix[i][j]; 
 			}
-			System.out.println(sum);
 			for(j=0;j<documentMatrix[0].length;j++)
 			{
 				 tf = (double)documentMatrix[i][j]/sum;

@@ -19,9 +19,7 @@ public class Main{
 	// This puts all the stop words into hashset.	
 	 HashSet<String> uniqueWords = new HashSet<>();
      HashMap<String, Integer> freq;
-     String directory = "C:\\Users\\Admin\\Desktop\\NYU Courant(2nd sem)\\BDS\\";
-     //String directory = "C:\\Users\\Dibyajit\\Documents\\Courses\\BDS\\HW\\";
-     File folder = new File(directory + "Text-documents-clustering\\\\Clustering\\\\resources\\\\dataset_3\\\\data\\\\C");
+     File folder = new File("..\\\\Clustering\\\\resources\\\\dataset_3\\\\data\\\\C");
      
      PreProcessing pp = new PreProcessing();
      documentMatrix dm = new documentMatrix();
@@ -60,23 +58,27 @@ public class Main{
 	  
 	  double[][] euclideanMatrix = c.getEuclideanMatrix(sortedtransMatrix);  
 	  double[][] cosineMatrix = c.getCosineMatrix(sortedtransMatrix);
-	  ArrayList<List<Integer>> clusters = c.makeClusters(docMatrix, 3, 0);
+	  int applyEuclideanDistance = 1;
+	  int applyCosineSimilarity = 0;
+	  ArrayList<List<Integer>> clusters = c.makeClusters(docMatrix, 3, applyCosineSimilarity);
 	  
 	  for(int i=0;i<clusters.size();i++)
 	  {
-		  System.out.println(clusters.get(i));
+		  System.out.println("Predicted cluster " + i + ": " + clusters.get(i));
 	  }
 	  
 	  Performance per = new Performance();
 	  per.buildCM(clusters);
 	  ArrayList<Double> precisions = per.getPrecisions(per.C1_truePositives, per.C1_falsePositives, per.C4_truePositives, per.C4_falsePositives, per.C7_truePositives, per.C7_falsePositives);
+	  System.out.print("Precisions : ");
 	  for(double d:precisions)
 	  {
-		  System.out.print(d + " "); 
+		  System.out.print( d + " "); 
 	  }
 	  
 	  System.out.println();
 	  ArrayList<Double> recalls = per.getRecalls(per.C1_truePositives, per.C4_truePositives, per.C7_truePositives);
+	  System.out.print("Recalls : ");
 	  for(double d:recalls)
 	  {
 		  System.out.print(d + " "); 
@@ -84,6 +86,7 @@ public class Main{
 	  System.out.println();
 	  
 	  ArrayList<Double> F1Scores = per.getF1Scores(precisions, recalls);
+	  System.out.print("F1 scores : ");
 	  for(double d:F1Scores)
 	  {
 		  System.out.print(d + " "); 
