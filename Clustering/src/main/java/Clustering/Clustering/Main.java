@@ -1,6 +1,9 @@
 package Clustering.Clustering;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,7 +16,7 @@ import java.lang.Math;
 
 public class Main{
 	
-	public static void main(String[] args)
+	public static void main(String[] args) throws IOException
 	{
      
 	// This puts all the stop words into hashset.	
@@ -51,10 +54,14 @@ public class Main{
 	  }
 	// Generating keyWords for clusters
 	  ArrayList<String> keyWords = dm.generateKeyWords(transformedMatrix);
-	  for(int i=0; i<keyWords.size(); i++)
+	  FileWriter fstream = new FileWriter("..\\\\Clustering\\\\resources\\\\keywords.txt");
+      
+      for(int i=0; i<keyWords.size(); i++)
 	  {
 		  System.out.println("Keyword for cluster " + i + ": " + keyWords.get(i));
+		  fstream.write("Keyword for cluster " + i + ": " + keyWords.get(i) + "\n");
 	  }
+      fstream.close();
 	  PrincipleComponentAnalysis pca = new PrincipleComponentAnalysis();
 	  SVDJama svdJama = new SVDJama();
 	  //double[][] principleComponents = pca.getPrincipleComponents(docMatrix, 2);
@@ -65,7 +72,8 @@ public class Main{
 	  double[][] cosineMatrix = c.getCosineMatrix(sortedtransMatrix);
 	  int applyEuclideanDistance = 1;
 	  int applyCosineSimilarity = 0;
-	  ArrayList<List<Integer>> clusters = c.makeClusters(docMatrix, 3, applyCosineSimilarity);
+	  int noOfClusters = 3;
+	  ArrayList<List<Integer>> clusters = c.makeClusters(docMatrix, noOfClusters, applyCosineSimilarity);
 	  
 	  for(int i=0;i<clusters.size();i++)
 	  {
