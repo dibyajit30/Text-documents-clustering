@@ -42,10 +42,8 @@ public class Main{
 	 
 	  int[][] documentMatrix = dm.makeMatrix(listmap, uniqueWords);
 	  
-	  
-	  
-	  double[][] transformedMatrix = dm.makeTM(documentMatrix); 
 
+	  double[][] transformedMatrix = dm.makeTM(documentMatrix); 
 	  double[][] sortedtransMatrix = dm.sortedTheMatrix(transformedMatrix, documentMatrix);
 	  double[][] docMatrix = new double[documentMatrix.length][documentMatrix[0].length];
 	  for(int i=0;i<documentMatrix.length;i++) {
