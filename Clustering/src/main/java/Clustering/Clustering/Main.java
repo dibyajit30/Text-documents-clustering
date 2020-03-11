@@ -49,7 +49,12 @@ public class Main{
 			  docMatrix[i][j] = (double) documentMatrix[i][j] * 1000;
 		  }
 	  }
-	  
+	// Generating keyWords for clusters
+	  ArrayList<String> keyWords = dm.generateKeyWords(transformedMatrix);
+	  for(int i=0; i<keyWords.size(); i++)
+	  {
+		  System.out.println("Keyword for cluster " + i + ": " + keyWords.get(i));
+	  }
 	  PrincipleComponentAnalysis pca = new PrincipleComponentAnalysis();
 	  SVDJama svdJama = new SVDJama();
 	  //double[][] principleComponents = pca.getPrincipleComponents(docMatrix, 2);

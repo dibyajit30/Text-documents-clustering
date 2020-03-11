@@ -96,12 +96,6 @@ public class documentMatrix {
 	}
 	
 	
-
-	
-	
-	
-	
-	
 	public double[][] makeTM(int[][] documentMatrix)
 	{
 		double tf=0.0;
